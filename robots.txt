@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://kaboildedton.github.io/mmain-hth-com-cn/sitemap.xml
