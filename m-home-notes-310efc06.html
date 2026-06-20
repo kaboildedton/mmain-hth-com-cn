@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2, user-scalable=yes">
+  <title>信息整理 · leyu 索引卡</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f4f9fc;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', sans-serif;
+      line-height: 1.6;
+      color: #1c2e36;
+      padding: 1.25rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .grid-wrap {
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    /* 主视觉区域 – 大卡片 */
+    .hero-card {
+      background: linear-gradient(145deg, #dceef5 0%, #b9dce8 100%);
+      border-radius: 2.25rem;
+      padding: 2.5rem 2rem 3rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 10px 20px rgba(0, 60, 70, 0.08);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -10%;
+      width: 200px;
+      height: 200px;
+      background: rgba(45, 150, 160, 0.04);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-card h1 {
+      font-size: 2.2rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: #0d4b57;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-card .sub {
+      font-size: 1.05rem;
+      color: #1f5d6a;
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(2px);
+      display: inline-block;
+      padding: 0.3rem 1.2rem;
+      border-radius: 40px;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-card p {
+      max-width: 680px;
+      margin: 0.8rem auto 0;
+      color: #143f49;
+      font-size: 1rem;
+    }
+
+    /* 网格卡片 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (min-width: 560px) {
+      .card-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .card-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 1.6rem;
+      padding: 1.8rem 1.4rem 1.8rem;
+      transition: transform 0.15s ease, box-shadow 0.15s;
+      box-shadow: 0 4px 10px rgba(30, 80, 90, 0.06);
+      border: 1px solid rgba(120, 190, 200, 0.2);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 22px rgba(45, 130, 140, 0.10);
+      border-color: #8cc9d4;
+    }
+
+    .card .icon-sym {
+      font-size: 1.7rem;
+      line-height: 1;
+      margin-bottom: 0.7rem;
+      color: #14838f;
+      background: #e3f2f5;
+      width: 2.6rem;
+      height: 2.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 1rem;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 550;
+      margin-bottom: 0.5rem;
+      color: #11525e;
+      letter-spacing: 0.01em;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #2e4d57;
+      margin-bottom: 0.6rem;
+      flex: 1;
+    }
+
+    .card .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.6rem;
+    }
+
+    .card .tag {
+      background: #e7f2f5;
+      color: #0f5b66;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 30px;
+      letter-spacing: 0.02em;
+    }
+
+    /* 适合人群双列卡片 */
+    .people-card {
+      background: #e4f0f4;
+      border-radius: 2rem;
+      padding: 2rem 1.6rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .people-card h2 {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 500;
+      font-size: 1.3rem;
+      color: #0b4d58;
+      margin-bottom: 1.4rem;
+    }
+
+    .people-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    @media (max-width: 480px) {
+      .people-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .people-item {
+      background: white;
+      padding: 1rem 1rem 0.9rem;
+      border-radius: 1.2rem;
+      border-left: 4px solid #3fa9b9;
+      box-shadow: 0 2px 6px rgba(20, 100, 110, 0.04);
+    }
+
+    .people-item strong {
+      display: block;
+      font-weight: 560;
+      color: #0a4d59;
+      margin-bottom: 0.2rem;
+    }
+
+    .people-item span {
+      font-size: 0.9rem;
+      color: #2b5c67;
+    }
+
+    /* 自然链接段落 */
+    .link-section {
+      background: white;
+      border-radius: 2rem;
+      padding: 2rem 1.8rem;
+      margin-bottom: 2.5rem;
+      border: 1px solid #c4dfe6;
+    }
+
+    .link-section h2 {
+      font-weight: 500;
+      font-size: 1.25rem;
+      color: #0e535f;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #b3d8e0;
+      padding-bottom: 0.4rem;
+      display: inline-block;
+    }
+
+    .link-section p {
+      margin-bottom: 1rem;
+      color: #1f414c;
+    }
+
+    .link-section a {
+      color: #117888;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dotted #5fb3c2;
+      transition: border 0.15s;
+    }
+
+    .link-section a:hover {
+      border-bottom: 2px solid #0b6d7a;
+      color: #0a6170;
+    }
+
+    /* FAQ 摘要卡片 */
+    .faq-mini {
+      background: #dae9ef;
+      border-radius: 1.8rem;
+      padding: 1.8rem 1.6rem;
+      margin-bottom: 2rem;
+    }
+
+    .faq-mini h3 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #11525e;
+      margin-bottom: 0.8rem;
+    }
+
+    .faq-item {
+      display: flex;
+      gap: 0.8rem;
+      margin-bottom: 0.8rem;
+      align-items: baseline;
+    }
+
+    .faq-item .q {
+      background: #2d9aa8;
+      color: white;
+      font-weight: 500;
+      font-size: 0.7rem;
+      width: 1.6rem;
+      height: 1.6rem;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .faq-item .a {
+      color: #183f49;
+      font-size: 0.9rem;
+    }
+
+    .faq-item .a strong {
+      color: #0a5b68;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.2rem 0 0.5rem;
+      color: #59828d;
+      font-size: 0.8rem;
+      border-top: 1px solid #c6dbe2;
+      margin-top: 0.8rem;
+    }
+
+    .dot-accent {
+      color: #218b9b;
+    }
+  </style>
+</head>
+<body>
+<div class="grid-wrap">
+  <!-- 主视觉 信息卡片式 -->
+  <div class="hero-card">
+    <h1>📇 索引・leyu</h1>
+    <div class="sub">资料整理 / 实用卡片</div>
+    <p>围绕「leyu」汇集使用场景、适用人群与信息指引，用卡片结构快速浏览核心模块。<br>每一张卡片都从实际使用角度做了归类，方便对照与索引。</p>
+  </div>
+
+  <!-- 用途卡片 网格 -->
+  <div class="card-grid">
+    <div class="card">
+      <div class="icon-sym">📂</div>
+      <h3>信息归档</h3>
+      <p>将零散的说明、指引、常见条目整理为条目式卡片，方便快速查阅与回顾。适合需要反复参考的内容。</p>
+      <div class="tag-list">
+        <span class="tag">结构清晰</span>
+        <span class="tag">索引优先</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="icon-sym">🔍</div>
+      <h3>快速定位</h3>
+      <p>通过卡片标签与分区标题，一眼锁定感兴趣的部分。减少翻找时间，提升信息获取效率。</p>
+      <div class="tag-list">
+        <span class="tag">标签过滤</span>
+        <span class="tag">分组展示</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="icon-sym">🧾</div>
+      <h3>对照清单</h3>
+      <p>不同卡片之间可横向对比用途与受众，适合做功能预览或选项比较。也可以作为备忘录式的参考页。</p>
+      <div class="tag-list">
+        <span class="tag">对比</span>
+        <span class="tag">备忘</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="icon-sym">📌</div>
+      <h3>引导说明</h3>
+      <p>新接触时可通过卡片总览获得基本印象；每个卡片独立成块，降低阅读负担。</p>
+      <div class="tag-list">
+        <span class="tag">新人友好</span>
+        <span class="tag">概览</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="icon-sym">🧩</div>
+      <h3>模块组合</h3>
+      <p>不同卡片可灵活拼接，适用于项目介绍、功能介绍或分类索引。保持统一风格的同时保留内容弹性。</p>
+      <div class="tag-list">
+        <span class="tag">灵活</span>
+        <span class="tag">模块化</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="icon-sym">📋</div>
+      <h3>条目汇总</h3>
+      <p>把分散的资料按类别收拢到卡片中，方便统一浏览。适合信息量中等、层次分明的页面。</p>
+      <div class="tag-list">
+        <span class="tag">汇总</span>
+        <span class="tag">分类</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 适合人群 双列 -->
+  <div class="people-card">
+    <h2>👥 适合这样使用的人群</h2>
+    <div class="people-grid">
+      <div class="people-item">
+        <strong>日常浏览者</strong>
+        <span>希望快速了解内容框架，不想逐页翻阅。卡片摘要可以直接提供关键信息。</span>
+      </div>
+      <div class="people-item">
+        <strong>资料整理者</strong>
+        <span>需要把分散的条目重新组织，卡片结构天然适合分类与索引。</span>
+      </div>
+      <div class="people-item">
+        <strong>新用户</strong>
+        <span>第一次接触时可以通过卡片总览建立整体认知，降低学习成本。</span>
+      </div>
+      <div class="people-item">
+        <strong>对比选择者</strong>
+        <span>同时查看多个模块或功能点，卡片并排展示有助于横向比较。</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 自然链接段落 -->
+  <div class="link-section">
+    <h2>🔗 相关索引</h2>
+    <p>如果你希望直接了解更完整的资料与最新说明，可以访问 <a href="https://m-home-leyu.com">leyu</a> 这个页面。它本身是信息整理的集中地，持续补充条目与索引卡片，适合作为参考的起点。</p>
+    <p>上面展示的卡片分类均基于实际使用中常见的查询方向整理而成。每个卡片都对应一类信息需求，你可以根据自己的关注点快速跳转或对比。</p>
+    <p style="margin-bottom: 0;">另外，FAQ 摘要中也包含了一些反复出现的问题，适合快速扫读。如果遇到卡片未覆盖的内容，不妨回到 <a href="https://m-home-leyu.com">leyu</a> 查看是否有最新的补充卡片。</p>
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <div class="faq-mini">
+    <h3>❓ 常见问题摘要</h3>
+    <div class="faq-item">
+      <span class="q">Q</span>
+      <span class="a"><strong>卡片信息会更新吗？</strong> 是的，根据实际反馈和内容变化会补充新卡片，保持索引不过时。</span>
+    </div>
+    <div class="faq-item">
+      <span class="q">Q</span>
+      <span class="a"><strong>如何快速找到某个具体条目？</strong> 建议先看卡片标题与标签，然后定位到对应分组。也可以在 <a href="https://m-home-leyu.com" style="border-bottom: 1px dotted #5fb3c2; color: #117888; text-decoration: none;">leyu</a> 页面中通过内链跳转。</span>
+    </div>
+    <div class="faq-item" style="margin-bottom: 0;">
+      <span class="q">Q</span>
+      <span class="a"><strong>卡片分类的依据是什么？</strong> 主要依据使用场景与信息类型，比如归档、对比、概览、引导等，尽量贴合实际查阅习惯。</span>
+    </div>
+  </div>
+
+  <footer>
+    <span class="dot-accent">●</span> 资料整理卡片 · 索引风格 · 信息优先 <span class="dot-accent">●</span>
+  </footer>
+</div>
+</body>
+</html>
