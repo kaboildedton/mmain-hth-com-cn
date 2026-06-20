@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雷速 · 轻叙</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #fafaf9;
+            color: #1c1c1a;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        .page-wrap {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 5rem;
+        }
+
+        /* 顶部导航 */
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0 0.5rem;
+            border-bottom: 1px solid #eae8e4;
+            margin-bottom: 3.5rem;
+        }
+        .top-nav .brand {
+            font-size: 1.4rem;
+            font-weight: 550;
+            letter-spacing: 0.02em;
+            color: #2c2c2a;
+        }
+        .top-nav .brand a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .top-nav .tagline {
+            font-size: 0.85rem;
+            color: #7f7d76;
+            letter-spacing: 0.3px;
+        }
+
+        /* Hero 区 */
+        .hero {
+            margin-bottom: 3.8rem;
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 450;
+            line-height: 1.25;
+            letter-spacing: -0.01em;
+            color: #1a1a17;
+            margin-bottom: 0.6rem;
+        }
+        .hero p {
+            font-size: 1.05rem;
+            color: #3e3c38;
+            max-width: 92%;
+            margin-bottom: 1.2rem;
+        }
+        .hero .intro-link {
+            font-size: 0.95rem;
+            color: #5b5a55;
+            background: #f0eeeb;
+            display: inline-block;
+            padding: 0.2rem 0.9rem;
+            border-radius: 30px;
+            transition: background 0.2s;
+        }
+        .hero .intro-link:hover {
+            background: #e2dfd9;
+        }
+
+        /* 三个场景卡片 */
+        .scenes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            margin-bottom: 4rem;
+        }
+        .scene-card {
+            flex: 1 1 200px;
+            background: #ffffff;
+            padding: 1.8rem 1.4rem 1.6rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.04);
+            border: 1px solid #efede8;
+            transition: box-shadow 0.2s, transform 0.15s;
+        }
+        .scene-card:hover {
+            box-shadow: 0 10px 24px rgba(0,0,0,0.04);
+            transform: translateY(-2px);
+        }
+        .scene-card .emoji-badge {
+            font-size: 1.7rem;
+            display: block;
+            margin-bottom: 0.6rem;
+        }
+        .scene-card h3 {
+            font-size: 1.2rem;
+            font-weight: 520;
+            margin-bottom: 0.3rem;
+            color: #1f1e1b;
+        }
+        .scene-card p {
+            font-size: 0.92rem;
+            color: #53514b;
+            margin-bottom: 0.5rem;
+        }
+        .scene-card .scene-note {
+            font-size: 0.82rem;
+            color: #8b8880;
+            border-top: 1px solid #efede8;
+            padding-top: 0.5rem;
+            margin-top: 0.4rem;
+        }
+
+        /* 常见说明 (简洁折叠式) */
+        .faq-cluster {
+            margin-bottom: 3.2rem;
+        }
+        .faq-cluster h2 {
+            font-size: 1.2rem;
+            font-weight: 480;
+            letter-spacing: 0.01em;
+            color: #2c2b27;
+            margin-bottom: 1.2rem;
+            border-left: 4px solid #b5b0a6;
+            padding-left: 0.9rem;
+        }
+        .faq-item {
+            border-bottom: 1px solid #e5e2dc;
+            padding: 0.7rem 0;
+        }
+        .faq-item:last-child {
+            border-bottom: 0;
+        }
+        .faq-item strong {
+            display: inline-block;
+            font-weight: 530;
+            font-size: 0.98rem;
+            color: #2d2b27;
+            margin-right: 0.4rem;
+        }
+        .faq-item .faq-answer {
+            display: inline;
+            font-size: 0.92rem;
+            color: #4a4843;
+        }
+
+        /* 尾注 & 链接 */
+        .footnote {
+            margin-top: 3.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e2dfd9;
+            font-size: 0.88rem;
+            color: #65635d;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        .footnote a {
+            color: #3c3a35;
+            text-decoration: underline;
+            text-decoration-color: #cbc6bc;
+            text-underline-offset: 3px;
+            transition: color 0.15s, text-decoration-color 0.2s;
+        }
+        .footnote a:hover {
+            color: #000;
+            text-decoration-color: #7d786e;
+        }
+
+        /* 响应式 */
+        @media (max-width: 560px) {
+            .page-wrap { padding: 1.2rem 1.2rem 3rem; }
+            .hero h1 { font-size: 1.7rem; }
+            .hero p { max-width: 100%; }
+            .scenes { gap: 1.2rem; }
+            .scene-card { flex: 1 1 100%; }
+            .top-nav .tagline { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrap">
+        <!-- 顶部导航 -->
+        <nav class="top-nav">
+            <span class="brand"><a href="https://leisu-cn.com">雷速</a></span>
+            <span class="tagline">轻量 · 日常</span>
+        </nav>
+
+        <!-- 核心介绍 -->
+        <div class="hero">
+            <h1>关于「雷速」<br>一种更轻快的日常方式</h1>
+            <p>
+                信息流动得太快，我们常常忘记停下来判断什么是真正需要的。<strong>雷速</strong>并不是追逐速度，而是希望找到一条更直接、更干净的路径——让你在繁杂里，一眼看到有用的东西。它不承诺万能，但试着在每个细节上保持清晰。
+            </p>
+            <span class="intro-link">从关键词到主题 · 轻量导航</span>
+        </div>
+
+        <!-- 三个场景模块 -->
+        <div class="scenes">
+            <div class="scene-card">
+                <span class="emoji-badge">🧭</span>
+                <h3>日常检索</h3>
+                <p>不想被过度推荐裹挟，只想快速定位自己关心的内容。用最少步骤找到入口，不额外消耗注意力。</p>
+                <div class="scene-note">关键词直达，而非列表</div>
+            </div>
+            <div class="scene-card">
+                <span class="emoji-badge">📎</span>
+                <h3>轻量备忘</h3>
+                <p>记下一段话、一个灵感，或者简单标注。不需要复杂结构，文本本身就能承载大部分想法。</p>
+                <div class="scene-note">不堆砌功能，够用就好</div>
+            </div>
+            <div class="scene-card">
+                <span class="emoji-badge">🔄</span>
+                <h3>主题串联</h3>
+                <p>当你对某件事产生好奇，可以顺着主题脉络自然展开，而不是在无序标签里反复跳转。</p>
+                <div class="scene-note">基于内容本身，而非算法</div>
+            </div>
+        </div>
+
+        <!-- 常见说明 -->
+        <div class="faq-cluster">
+            <h2>一些常见说明</h2>
+            <div class="faq-item">
+                <strong>Q:</strong>
+                <span class="faq-answer">「雷速」和普通导航有什么不同？—— 更在意克制。它不堆砌信息密度，而是以内容主题串联，减少无意义的跳转。</span>
+            </div>
+            <div class="faq-item">
+                <strong>Q:</strong>
+                <span class="faq-answer">我该怎么开始使用？—— 直接访问 <a href="https://leisu-cn.com">雷速</a>，页面本身即导航起点。所有功能都围绕关键词展开，没有隐藏层级。</span>
+            </div>
+            <div class="faq-item">
+                <strong>Q:</strong>
+                <span class="faq-answer">内容会频繁更新吗？—— 以稳定为主。主题和入口保持清晰，偶尔根据反馈微调，不追求表面热闹。</span>
+            </div>
+            <div class="faq-item">
+                <strong>Q:</strong>
+                <span class="faq-answer">移动端体验如何？—— 适配了窄屏和宽屏，依然保持极简留白，正文宽度优先于铺满。</span>
+            </div>
+        </div>
+
+        <!-- 尾注 -->
+        <div class="footnote">
+            <span>基于主题内容 · 轻量导航</span>
+            <span>更多信息可前往 <a href="https://leisu-cn.com">雷速</a></span>
+        </div>
+    </div>
+</body>
+</html>
