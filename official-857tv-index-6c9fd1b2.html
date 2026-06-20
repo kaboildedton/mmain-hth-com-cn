@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>857直播 · 轻量导航</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #fafafa;
+            color: #1d2a3a;
+            line-height: 1.7;
+            padding: 1.5rem;
+        }
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* 顶部导航 */
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e4e9f0;
+            margin-bottom: 3rem;
+        }
+        .nav-brand {
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 0.02em;
+            color: #1d2a3a;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.2rem;
+            font-size: 0.9rem;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5b6e;
+            transition: color 0.15s;
+        }
+        .nav-links a:hover {
+            color: #1d2a3a;
+        }
+
+        /* hero区 */
+        .hero {
+            margin-bottom: 3.5rem;
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+            color: #0b1a2a;
+        }
+        .hero p {
+            font-size: 1rem;
+            color: #3b4c5e;
+            max-width: 580px;
+        }
+
+        /* 正文窄宽 */
+        .intro-text {
+            max-width: 620px;
+            margin-bottom: 2.8rem;
+        }
+        .intro-text p {
+            margin-bottom: 1.2rem;
+            font-size: 0.98rem;
+            color: #2c3d4f;
+        }
+
+        /* 场景模块三卡片 */
+        .scene-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 3rem 0 3.5rem;
+        }
+        .scene-card {
+            flex: 1 1 180px;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.6rem 1.4rem 1.8rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02), 0 1px 3px rgba(0,0,0,0.04);
+            transition: box-shadow 0.2s;
+        }
+        .scene-card:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+        }
+        .scene-card .emoji {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 0.6rem;
+        }
+        .scene-card h3 {
+            font-weight: 500;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #142433;
+        }
+        .scene-card p {
+            font-size: 0.9rem;
+            color: #4a5d70;
+            line-height: 1.6;
+        }
+
+        /* 常见说明区块 */
+        .faq-note {
+            margin: 3rem 0 2.5rem;
+            border-top: 1px solid #e4e9f0;
+            padding-top: 2.2rem;
+        }
+        .faq-note h2 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 1.2rem;
+            letter-spacing: 0.01em;
+            color: #1d2a3a;
+        }
+        .faq-item {
+            margin-bottom: 1.2rem;
+        }
+        .faq-item strong {
+            display: block;
+            font-weight: 500;
+            color: #1d2a3a;
+            margin-bottom: 0.15rem;
+            font-size: 0.95rem;
+        }
+        .faq-item p {
+            font-size: 0.9rem;
+            color: #3f5266;
+            margin-left: 0.2rem;
+        }
+
+        .inline-link {
+            color: #1d2a3a;
+            text-decoration: none;
+            border-bottom: 1px solid #b6c4d4;
+            transition: border-color 0.15s;
+        }
+        .inline-link:hover {
+            border-bottom-color: #1d2a3a;
+        }
+
+        .footnote {
+            margin-top: 3rem;
+            font-size: 0.8rem;
+            color: #6c7e90;
+            border-top: 1px solid #e4e9f0;
+            padding-top: 1.8rem;
+            text-align: left;
+        }
+
+        @media (max-width: 500px) {
+            body { padding: 1rem; }
+            .container { padding: 1rem 0.2rem; }
+            .hero h1 { font-size: 1.8rem; }
+            .scene-grid { gap: 1.2rem; }
+            .scene-card { flex: 1 1 100%; padding: 1.4rem; }
+            .nav-links { gap: 0.8rem; font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- 顶部导航 -->
+    <nav class="nav">
+        <span class="nav-brand">857live · 轻册</span>
+        <div class="nav-links">
+            <a href="#">再次访问</a>
+            <a href="#">收藏夹</a>
+            <a href="#">持续关注</a>
+        </div>
+    </nav>
+
+    <!-- hero 简介 -->
+    <div class="hero">
+        <h1>回到熟悉的地方</h1>
+        <p>有些站点，值得在浏览器里留一个位置。不用每次重新搜寻，也不必担心忘记路径。</p>
+    </div>
+
+    <!-- 核心介绍段落 -->
+    <div class="intro-text">
+        <p>
+            几个月前偶然发现 <a href="https://official-857tv.com" class="inline-link">857直播</a>，当时只是随手点开一个频道，后来却慢慢变成了习惯。页面干净，内容直接，没有太多冗余的弹窗和跳转。对于常看的人来说，最大的好感可能就是“它一直在那里”。
+        </p>
+        <p>
+            陆续推荐给两三位朋友，反馈也类似：不需要注册、不需要关注社交账号，打开就能看。这种轻量的方式，在如今各种强制下载、注册、关注的环境里，显得有点特别。
+        </p>
+    </div>
+
+    <!-- 三个场景模块 -->
+    <div class="scene-grid">
+        <div class="scene-card">
+            <span class="emoji">📌</span>
+            <h3>再次访问</h3>
+            <p>隔几天回来，页面还是老样子，频道列表也没大变。没有突然改版或找不到入口的错愕感，这点很舒服。</p>
+        </div>
+        <div class="scene-card">
+            <span class="emoji">⭐</span>
+            <h3>收藏习惯</h3>
+            <p>把链接放进书签栏，或者记在备忘录里。下次想看的时候，不用搜索、不用回忆名字，直接点开就好。</p>
+        </div>
+        <div class="scene-card">
+            <span class="emoji">🔁</span>
+            <h3>持续关注</h3>
+            <p>偶尔刷新，偶尔看到新的内容。没有推送通知，没有未读红点，全靠自己想起。安静且自由。</p>
+        </div>
+    </div>
+
+    <!-- 常见说明（FAQ风格） -->
+    <div class="faq-note">
+        <h2>一些你可能想确认的</h2>
+        <div class="faq-item">
+            <strong>需要注册或登录吗？</strong>
+            <p>不需要。直接进入即可浏览内容，没有账号体系，也不收集个人信息。</p>
+        </div>
+        <div class="faq-item">
+            <strong>移动端和桌面端体验一致吗？</strong>
+            <p>基本一致。页面针对窄屏做了适配，手机浏览器打开同样清晰可用。</p>
+        </div>
+        <div class="faq-item">
+            <strong>如何保存这个站点？</strong>
+            <p>最简单的方法：把 <a href="https://official-857tv.com" class="inline-link">857直播</a> 添加到浏览器书签，或复制链接到手机备忘录。下次从收藏夹直接点开。</p>
+        </div>
+    </div>
+
+    <div class="footnote">
+        <p>— 记录于一次安静的下午 · 无需提醒，自然会回来</p>
+    </div>
+
+</div>
+</body>
+</html>
