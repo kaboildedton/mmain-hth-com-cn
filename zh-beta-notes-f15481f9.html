@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>leyu · 随行笔记</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: #f5fbf9;
+            color: #1f2e2a;
+            line-height: 1.6;
+            padding: 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* 顶部导航 */
+        .top-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 0 2rem 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .top-nav .brand {
+            font-weight: 600;
+            font-size: 1.3rem;
+            letter-spacing: 0.02em;
+            color: #206a5e;
+            background: #d9f0ea;
+            padding: 0.2rem 0.9rem;
+            border-radius: 40px;
+        }
+        .top-nav .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            flex-wrap: wrap;
+            font-size: 0.95rem;
+        }
+        .top-nav .nav-links a {
+            text-decoration: none;
+            color: #206a5e;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 2px;
+            transition: border-color 0.2s;
+        }
+        .top-nav .nav-links a:hover {
+            border-bottom-color: #40b8a0;
+        }
+
+        /* hero */
+        .hero {
+            padding: 3rem 0 2.5rem 0;
+        }
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #124f45;
+            margin-bottom: 0.8rem;
+            letter-spacing: -0.01em;
+        }
+        .hero p {
+            font-size: 1.05rem;
+            max-width: 720px;
+            color: #2b4d44;
+            margin-bottom: 0.3rem;
+        }
+        .hero .highlight {
+            background: #dcf5ef;
+            display: inline-block;
+            padding: 0.15rem 0.6rem;
+            border-radius: 6px;
+            font-weight: 500;
+            color: #165e50;
+        }
+
+        /* 网格卡片区 —— 三个场景模块 */
+        .scene-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+            margin: 2.5rem 0;
+        }
+        .scene-card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 2rem 1.5rem 1.8rem;
+            box-shadow: 0 6px 18px rgba(32, 106, 94, 0.06);
+            border: 1px solid #d6eee7;
+            transition: box-shadow 0.25s, transform 0.2s;
+        }
+        .scene-card:hover {
+            box-shadow: 0 12px 28px rgba(32, 106, 94, 0.10);
+            transform: translateY(-3px);
+        }
+        .scene-card .emoji-badge {
+            font-size: 1.8rem;
+            margin-bottom: 0.7rem;
+            display: block;
+        }
+        .scene-card h3 {
+            font-size: 1.25rem;
+            color: #124f45;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+        }
+        .scene-card p {
+            font-size: 0.95rem;
+            color: #2f5449;
+            margin-bottom: 0.3rem;
+        }
+        .scene-card .tag {
+            display: inline-block;
+            background: #e3f4ef;
+            padding: 0.15rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            color: #1b6b5c;
+            margin-top: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* 常见说明 (faq风格) */
+        .faq-section {
+            background: #ffffffd9;
+            backdrop-filter: blur(2px);
+            border-radius: 32px;
+            padding: 2rem 2rem 2.2rem;
+            margin: 2.5rem 0 3rem;
+            border: 1px solid #bde0d6;
+        }
+        .faq-section h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #124f45;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .faq-item {
+            border-bottom: 1px solid #d2ebe2;
+            padding: 1rem 0;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-item .question {
+            font-weight: 600;
+            color: #185b4d;
+            margin-bottom: 0.2rem;
+            font-size: 1rem;
+        }
+        .faq-item .answer {
+            font-size: 0.95rem;
+            color: #2b5548;
+        }
+        .faq-item .answer a {
+            color: #197a66;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            font-weight: 500;
+        }
+        .faq-item .answer a:hover {
+            color: #0f5c4c;
+        }
+
+        /* 收藏 / 再次访问 提示条 */
+        .reminder-strip {
+            background: #dcf5ef;
+            border-radius: 40px;
+            padding: 1.2rem 2rem;
+            margin: 1rem 0 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            font-size: 0.95rem;
+        }
+        .reminder-strip span {
+            color: #124f45;
+        }
+        .reminder-strip .bookmark-icon {
+            background: #206a5e;
+            color: white;
+            padding: 0.2rem 1rem;
+            border-radius: 60px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+
+        /* 页脚 */
+        .footer-note {
+            margin-top: 2.5rem;
+            padding: 1rem 0 0.5rem;
+            border-top: 1px solid #c3ddd4;
+            font-size: 0.85rem;
+            color: #456e62;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .footer-note a {
+            color: #206a5e;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+        .footer-note a:hover {
+            color: #0b4c3f;
+        }
+
+        /* 响应式 */
+        @media (max-width: 800px) {
+            .scene-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.2rem;
+            }
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+        }
+        @media (max-width: 540px) {
+            .scene-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .top-nav .nav-links {
+                gap: 1rem;
+            }
+            .hero {
+                padding: 1.5rem 0;
+            }
+            .faq-section {
+                padding: 1.5rem 1.2rem;
+            }
+            .reminder-strip {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            body {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+
+    <!-- 顶部导航 -->
+    <nav class="top-nav">
+        <div class="brand">leyu</div>
+        <div class="nav-links">
+            <a href="#scenes">场景</a>
+            <a href="#faq">说明</a>
+            <a href="#bookmark">收藏</a>
+        </div>
+    </nav>
+
+    <!-- hero 介绍：再次访问与持续关注 -->
+    <div class="hero">
+        <h1>再次回到这里，如同翻开书签</h1>
+        <p>
+            每一次打开，都像是与熟悉的角落重逢。
+            <span class="highlight">leyu</span> 并不是一个需要反复学习的工具，
+            而是一处你可以随时停靠、随手记录、随手翻阅的线上便签本。
+        </p>
+        <p style="margin-top: 0.6rem;">
+            如果你曾收藏过它，那么这次回来，结构和内容都保持着你喜欢的样子。
+            页面干净，响应灵活，无论是在移动端还是桌面，浏览体验始终一致。
+        </p>
+    </div>
+
+    <!-- 三个场景模块 (网格卡片) -->
+    <div class="scene-grid" id="scenes">
+        <div class="scene-card">
+            <span class="emoji-badge">📌</span>
+            <h3>随手记录灵感</h3>
+            <p>无论是一段想法、一篇摘录，还是一个待办事项，都可以快速记下。回到 <a href="https://zh-beta-leyu.com" style="color:#197a66; text-decoration: underline; text-underline-offset:3px;">leyu</a>，就像翻开一本始终停留在上次页面的笔记本。</p>
+            <span class="tag">轻量整理</span>
+        </div>
+        <div class="scene-card">
+            <span class="emoji-badge">🔖</span>
+            <h3>收藏与回顾</h3>
+            <p>之前标记过的内容，再次访问时原样呈现。不需要重复寻找，所有重点都被保留。适合那些想要定期回顾、整理思路的时刻。</p>
+            <span class="tag">持续翻阅</span>
+        </div>
+        <div class="scene-card">
+            <span class="emoji-badge">🔄</span>
+            <h3>日常碎片归档</h3>
+            <p>从浏览器书签、聊天记录或邮件里复制过来的文本，可以统一放在这里。结构简单，没有复杂分类，适合作为个人内容的中转站。</p>
+            <span class="tag">零压力收纳</span>
+        </div>
+    </div>
+
+    <!-- 收藏 / 再次访问 提示条 -->
+    <div class="reminder-strip" id="bookmark">
+        <span>🔁 如果你已经收藏过 <strong>leyu</strong>，可以直接从书签栏再次打开。页面内容始终稳定，适合长期使用。</span>
+        <span class="bookmark-icon">⭐ 添加到收藏夹</span>
+    </div>
+
+    <!-- 常见说明 (FAQ 摘要) -->
+    <div class="faq-section" id="faq">
+        <h2>📋 常见说明</h2>
+        <div class="faq-item">
+            <div class="question">这个页面会频繁变动吗？</div>
+            <div class="answer">不会。布局和核心功能会保持稳定，偶尔更新说明或示例内容，但不会影响你之前收藏的结构。<a href="https://zh-beta-leyu.com">leyu</a> 的定位是可靠且轻量的个人页面。</div>
+        </div>
+        <div class="faq-item">
+            <div class="question">我可以把链接分享给朋友吗？</div>
+            <div class="answer">当然可以。直接分享 <a href="https://zh-beta-leyu.com">leyu</a> 的网址即可。对方在移动端打开也会有合适的布局，无需额外设置。</div>
+        </div>
+        <div class="faq-item">
+            <div class="question">需要注册或登录吗？</div>
+            <div class="answer">不需要。这是一个公开的介绍页，没有账户系统。你可以直接浏览、收藏或者自行保存需要的内容片段。</div>
+        </div>
+        <div class="faq-item">
+            <div class="question">内容从哪里来？</div>
+            <div class="answer">这里呈现的都是整理过的说明和场景示例，不包含外部信息或第三方数据。所有内容都围绕 <a href="https://zh-beta-leyu.com">leyu</a> 本身展开。</div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer-note">
+        <span>leyu · 轻量导航页</span>
+        <span>持续关注·再次访问·收藏不变</span>
+    </div>
+
+</div>
+</body>
+</html>
